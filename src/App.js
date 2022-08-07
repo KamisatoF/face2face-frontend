@@ -7,11 +7,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <ContentContainerDiv>
-        APP
-      </ContentContainerDiv>
-      
-
+      <ContentContainerDiv />
     </div>    
   );
 }
