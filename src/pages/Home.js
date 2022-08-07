@@ -1,16 +1,15 @@
 import { Header } from "../components/Header";
 import { ContentContainerDiv } from "../styles/ContentContainer";
 
-function ServiceCRUD() {
+function Home() {
     return (
-        <div className="ServiceCRUD">
+        <div className="Home">
             <Header />
             <ContentContainerDiv>
-                ServiceCRUD
+                HOME
             </ContentContainerDiv>
-
         </div>
     );
 }
 
-export default ServiceCRUD;
+export default Home;

@@ -1,14 +1,18 @@
-import { Header } from "./components/Header";
-import { RoomList } from "./components/RoomList";
-import {Content } from "./components/Content"
-import { ContentContainerDiv } from "./styles/ContentContainer";
+
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home'
+import ServiceCRUD from './pages/ServiceCRUD';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <ContentContainerDiv />
-    </div>    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/service" element={<ServiceCRUD />} />
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 

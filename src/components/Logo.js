@@ -1,10 +1,11 @@
 import { LogoContainer, LogoPicStyle } from "../styles/HeaderContainer";
 import logo from '../images/logo.png';
+import { Link } from "react-router-dom"
 
 export const Logo = () => (
     <LogoContainer>
         <div>
-            <LogoPicStyle src={logo} alt="" />         
+            <Link to="/"><LogoPicStyle src={logo} alt="" /></Link>
         </div>   
     </LogoContainer>
 )

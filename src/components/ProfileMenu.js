@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LogoContainer, ProfilePicStyle, Menu, MenuLink, DropdownMenu } from "../styles/HeaderContainer";
 import profileImage from '../images/profile_default.png';
+import { Link } from "react-router-dom"
 
 export const ProfileMenu = () => {
     const [display, setDisplay] = useState('none')
@@ -23,7 +24,7 @@ export const ProfileMenu = () => {
             </div>
             <Menu >
                 <DropdownMenu style={{ display: display }}>
-                        <MenuLink href="">Cadastro de Serviço</MenuLink>
+                    <Link to="/service"><MenuLink>Cadastro de Serviço</MenuLink></Link>
                 </DropdownMenu>
             </Menu>
 
