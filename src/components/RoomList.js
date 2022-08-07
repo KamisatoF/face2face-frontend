@@ -4,7 +4,7 @@ import { RoomItem } from "./RoomItem";
 export const RoomList = (props) => (
     <RoomsContainer>
         <ul>
-            {props.rooms.map(r => <RoomItem title={r.roomName}/>)}
+            {props.rooms.map(r => <RoomItem title={r.roomName} />)}
         </ul>
     </RoomsContainer>
 )
