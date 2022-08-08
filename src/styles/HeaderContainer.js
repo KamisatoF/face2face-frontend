@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
   left: 0;
   right: 0;
 `
-export const LogoContainer = styled.a`
+export const LogoContainer = styled.div`
   padding: 1rem 0;
   color: #7b7fda;
   text-decoration: none;
@@ -89,7 +89,7 @@ export const DropdownMenu = styled.div`
   width: 110px;
 `
 
-export const MenuLink = styled.a`
+export const MenuLink = styled.div`
   padding: .7rem .2rem;
   cursor: pointer;
   display: block;

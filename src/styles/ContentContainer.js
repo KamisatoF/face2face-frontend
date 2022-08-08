@@ -24,7 +24,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 3px;
   width: ${props => props.width ? props.width : 'auto'}
-  `
+`
 
 export const InputText = styled.textarea`
   padding: 0.5em;

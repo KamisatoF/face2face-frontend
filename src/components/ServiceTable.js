@@ -1,7 +1,15 @@
 import { Table, TableData, TableRow, IconImage, FieldDiv } from "../styles/TableContainer";
 import newIcon from '../images/novo_sf.png';
 
-export const ServiceTable = () => (
+var service;
+
+export function handleRow(se) {
+    service = se;
+    console.log(service);
+    return service;
+}
+
+export const ServiceTable = ({ services }) => (
     <Table>
         <tbody>
             <TableRow>
@@ -9,63 +17,18 @@ export const ServiceTable = () => (
                     <IconImage src={newIcon} alt="" />
                 </TableData>
             </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisatoooooooooooooooooooooooooooooooooooooooo000000000000000000000000000000000211111111111111111111111111111111111111100000</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <FieldDiv>2</FieldDiv>
-                    <FieldDiv>Fabio</FieldDiv>
-                    <FieldDiv>Kamisato</FieldDiv>
-                </TableData>
-            </TableRow>
-            
+            {services.map(se => {
+                return (
+                    <TableRow key={ se.id } onClick={() => handleRow(se)}>
+                        <TableData>
+                            <FieldDiv>{ se.descricao }</FieldDiv>
+                            <FieldDiv>{ se.preco }</FieldDiv>
+                            <FieldDiv>{ se.detalhes }</FieldDiv>
+                        </TableData>
+                    </TableRow>
+                );
+            })}
+
         </tbody>
 
     </Table>
