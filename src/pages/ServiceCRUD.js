@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import { ContentContainerDiv, CrudeDiv, CrudeTitle, Input, InputDiv, InputText, IconImage } from "../styles/ContentContainer";
 import deleteIcon from '../images/excluir_sf.png';
 import saveIcon from '../images/save_sf.png';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ServiceService } from "../api/ServiceService";
 import newIcon from '../images/novo_sf.png';
 import { Table, TableData, TableRow, FieldDiv } from "../styles/TableContainer";
@@ -22,7 +22,7 @@ function ServiceCRUD() {
     const mergeService = async () => {
         console.log(values.id);
         var response = null;
-        if (values.id == 0) {
+        if (values.id === 0) {
             response = await ServiceService.insert(values);
         } else {
             response = await ServiceService.update(values);
