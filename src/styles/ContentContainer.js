@@ -10,10 +10,10 @@ export const ContentContainerDiv = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  width: 80%;
-  height: 600px;
+  width: 75%;
+  height: 100vh;
   margin: 0px auto;
-  background-color: whitesmoke;
+  background-color: white;
 `
 
 export const Input = styled.input`
@@ -48,10 +48,9 @@ export const CrudeDiv = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  width: 80%;
-  height: 600px;
+  width: 100%;
+  height: 30%;
   margin: 0px auto;
-  justify-content: left;
 `
 
 export const InputDiv = styled.div`
@@ -64,10 +63,9 @@ export const InputDiv = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  width: 60%;
+  width: 50%;
   height: 400px;
   margin: 0px auto;
-  background-color: whitesmoke;
   justify-content: left;
 `
 

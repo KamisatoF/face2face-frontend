@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Table = styled.table`
-width: 400px;
-height: 500px;
+width: 50vh;
+height: 400px;
 margin: 0;
 border-spacing: 0;
 border-collapse: collapse;
@@ -21,7 +21,7 @@ export const TableRow = styled.tr`
 :hover {
     background-color: grey;
 }
-width: 400px;
+width: 100hv;
 `
 
 export const TableData = styled.td`
@@ -30,7 +30,8 @@ height: 100%;
 text-align: center;
 overflow-wrap: break-word;
 vertical-align: middle;
-width: 400px;
+width: 50%;
+height: auto;
 text-align: justify;
 text-indent: 10px;
 `
