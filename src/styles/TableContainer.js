@@ -53,3 +53,8 @@ export const IconImage = styled.img`
   padding-bottom: 0px;
   border-radius: 0%;
 `
+export const FieldDiv = styled.div`
+ width: 370px;
+ text-align: justify;
+ word-wrap: justify;
+`

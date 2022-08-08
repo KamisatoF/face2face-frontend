@@ -1,4 +1,4 @@
-import { Table, TableData, TableRow, IconImage } from "../styles/TableContainer";
+import { Table, TableData, TableRow, IconImage, FieldDiv } from "../styles/TableContainer";
 import newIcon from '../images/novo_sf.png';
 
 export const ServiceTable = () => (
@@ -11,74 +11,61 @@ export const ServiceTable = () => (
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisatoooooooooooooooooooooooooooooooooooooooo000000000000000000000000000000000211111111111111111111111111111111111111100000</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
             <TableRow>
                 <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
+                    <FieldDiv>2</FieldDiv>
+                    <FieldDiv>Fabio</FieldDiv>
+                    <FieldDiv>Kamisato</FieldDiv>
                 </TableData>
             </TableRow>
-            <TableRow>
-                <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
-                </TableData>
-            </TableRow>
-            <TableRow>
-                <TableData>
-                    <p>2</p>
-                    <p>Fabio</p>
-                    <p>Kamisato</p>
-                </TableData>
-            </TableRow>
+            
         </tbody>
 
     </Table>
