@@ -27,7 +27,7 @@ function ServiceCRUD() {
         } else {
             response = await ServiceService.update(values);
         }
-        
+        clearFormService();
         setServices(response.data);
     }
 

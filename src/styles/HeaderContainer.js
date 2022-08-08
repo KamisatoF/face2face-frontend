@@ -78,15 +78,15 @@ export const DropdownMenu = styled.div`
   position: absolute;
   display: block;
   left: 0;
-  top: calc(100% + .25rem);
+  top: calc(100% + .15rem);
   background-color: white;
-  padding: .25rem;
+  padding: .10rem;
   border-radius: .25rem;
   align-items: center;
   text-align: center;
   display: list-item;
   background-color: #D3D3D3;
-  width: 110px;
+  width: 100px;
 `
 
 export const MenuLink = styled.div`
