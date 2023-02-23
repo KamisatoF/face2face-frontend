@@ -10,6 +10,7 @@ import { Table, TableData, TableRow, FieldDiv } from "../styles/TableContainer";
 
 function ServiceCRUD() {
     const [services, setServices] = useState([]);
+    
     const fetchServices = async () => {
         const response = await ServiceService.findAll();
         setServices(response.data);

@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://face2face-backend.azurewebsites.net/servicos/';
-const withBaseUrl = path => '${BASE_URL}${path}';
-
 export class ServiceService {
     static findAll() {
         return axios('https://face2face-backend.azurewebsites.net/servicos/findAll/')
