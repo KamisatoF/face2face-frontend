@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
 import { LoginService } from "../api/LoginService";
-import { useNavigate } from "react-router-dom";
-
 
 function Login() {
     const [usuario, setUsuario] = useState({});
@@ -21,11 +19,8 @@ function Login() {
         setUsuario(response.data);
     }
 
-    const navigate = useNavigate;
-
     return (
         <div>
-
             <Header />
 
             <Container className="mt-5">
@@ -45,7 +40,7 @@ function Login() {
                         Login
                     </Button>{' '}
 
-                    <Button variant="dark" type="submit" onClick={() => navigate("/cadastro")}>
+                    <Button variant="dark" type="submit" href="/cadastro">
                         Cadastrar
                     </Button>
 
