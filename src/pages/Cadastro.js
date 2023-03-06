@@ -8,8 +8,8 @@ import { CadastroService } from "../api/CadastroService";
 
 function Login() {
     
-    const [show, setShow] = useState(false);
-    const [variant, setVariant] = useState('danger');
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
     const [alert, setAlert] = useState();
     const [usuario, setUsuario] = useState({});
     const handleInputChange = (usuario) => {
@@ -23,16 +23,16 @@ function Login() {
         e.preventDefault();
         try {
             const res = await CadastroService.insert(usuario);
-            if (res.status == 200) {
-                setShow(true);
-                setVariant('success');
-                setAlert(res.data);
+            if (res.status === 200) {
+                setShowSuccess(true);
+                setShowError(false);
+                setAlert(res.data  + '. ');
                 clearForm();
             }
         } catch (err) {
-            setShow(true);
+            setShowSuccess(false);
+            setShowError(true);
             setAlert(err.response.data);
-            setVariant('danger');
         }
                 
     }
@@ -87,7 +87,12 @@ function Login() {
                         Salvar
                     </Button>{''}
 
-                    <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                    <Alert variant='success' show={showSuccess && !showError} onClose={() => setShowSuccess(false)} dismissible>
+                        {alert}
+                        <Alert.Link href="/login"> Seguir para Login.</Alert.Link>
+                    </Alert>
+
+                    <Alert variant='danger' show={!showSuccess && showError} onClose={() => setShowError(false)} dismissible>
                         {alert}
                     </Alert>
                                         
