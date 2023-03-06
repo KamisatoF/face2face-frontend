@@ -16,7 +16,7 @@ function ServiceCRUD() {
         setServices(response.data);
     }
 
-    useEffect(() => {
+    useEffect(() => { 
         fetchServices();
     }, [])
 

@@ -11,12 +11,13 @@ function Login() {
         setUsuario(preValue => ({
             ...preValue,
             [usuario.target.name]: usuario.target.value,
-        }))
+        })) 
     };
 
     const authService = async () => {
-        const response = await LoginService.authenticate(usuario);
-        setUsuario(response.data);
+        const response = await LoginService.authenticate(usuario);        
+        console.log(response);
+        setUsuario(response.data);  
     }
 
     return (
@@ -28,15 +29,15 @@ function Login() {
 
                     <Form.Group className="mb-3" controlId="FormEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control name="email" type="email" placeholder="nome@exemplo.com" onChange={handleInputChange} value={usuario.email}></Form.Control>
+                        <Form.Control name="email" type="email" placeholder="nome@exemplo.com" onChange={handleInputChange}></Form.Control>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormPassword">
                         <Form.Label>Senha</Form.Label>
-                        <Form.Control name="senha" type="password" placeholder="Senha" onChange={handleInputChange} value={usuario.senha}></Form.Control>
+                        <Form.Control name="senha" type="password" placeholder="Senha" onChange={handleInputChange}></Form.Control>
                     </Form.Group>
 
-                    <Button onClick={() => authService()} type="submit">
+                    <Button variant="dark" type="submit" onClick={() => authService()}>
                         Login
                     </Button>{' '}
 
