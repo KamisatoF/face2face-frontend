@@ -68,7 +68,7 @@ function Login() {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormTelefone">
-                        <Form.Label>Telefone</Form.Label>
+                        <Form.Label>Celular</Form.Label>
                         <Form.Control name="telefone" type="text" placeholder="(11) 99999-9999" value={usuario.telefone || ''} onChange={handleInputChange} required></Form.Control>
                     </Form.Group>
 
