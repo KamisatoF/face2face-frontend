@@ -25,7 +25,7 @@ function Login() {
             if (res.status === 200) {
                 setShowSuccess(true);
                 setShowError(false);
-                setAlert(res.data  + '. ');
+                setAlert(res.data);
                 clearForm();
             }
         } catch (err) {
