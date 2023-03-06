@@ -26,7 +26,7 @@ function Login() {
             setAlert('token = ' + res.data);
             console.log(res.status);
             console.log(res.data);
-            setUsuario(res.data);
+            clearForm();
         } catch (err) {
             setShowAlert(true);
             setVariant('danger');
@@ -35,6 +35,13 @@ function Login() {
                 setAlert("Usuário ou senha inválido.");
             }      
         }
+    }
+
+    const clearForm = () => {
+        setUsuario({
+            email: '',
+            senha: ''
+        })        
     }
 
     return (
@@ -46,12 +53,12 @@ function Login() {
 
                     <Form.Group className="mb-3" controlId="FormEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control name="email" type="email" placeholder="nome@exemplo.com" onChange={handleInputChange}></Form.Control>
+                        <Form.Control name="email" type="email" placeholder="nome@exemplo.com" value={usuario.email || ''} onChange={handleInputChange}></Form.Control>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormPassword">
                         <Form.Label>Senha</Form.Label>
-                        <Form.Control name="senha" type="password" placeholder="Senha" onChange={handleInputChange}></Form.Control>
+                        <Form.Control name="senha" type="password" placeholder="Senha" value={usuario.senha || ''} onChange={handleInputChange}></Form.Control>
                     </Form.Group>
 
                     <Button variant="dark" type="submit" onClick={(e) => authService(e)}>
