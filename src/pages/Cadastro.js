@@ -26,7 +26,7 @@ function Login() {
             if (res.status == 200) {
                 setShow(true);
                 setVariant('success');
-                setAlert('Cadastro realizado com sucesso!');
+                setAlert(res.data);
                 clearForm();
             }
         } catch (err) {
