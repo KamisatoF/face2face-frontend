@@ -1,10 +1,9 @@
-import { Alert, Form, InputGroup } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { Alert, Form } from "react-bootstrap";
+import { useState } from "react";
 import { Header } from "../components/Header";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
 import { CadastroService } from "../api/CadastroService";
-
 
 function Login() {
     
@@ -33,8 +32,7 @@ function Login() {
             setShowSuccess(false);
             setShowError(true);
             setAlert(err.response.data);
-        }
-                
+        }       
     }
 
     const clearForm = () => {
@@ -45,8 +43,7 @@ function Login() {
             telefone: '',
             senha: '',
             recebeInformacoesEmailString: '' 
-        })
-        
+        })        
     }
 
     return (
