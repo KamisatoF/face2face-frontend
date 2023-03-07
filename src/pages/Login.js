@@ -7,9 +7,12 @@ import { LoginService } from "../api/LoginService";
 
 function Login() {
     const [usuario, setUsuario] = useState({});
+    const [usuarioLogado, setUsuarioLogado] = useState({});
     const [variant, setVariant] = useState('danger');
     const [showAlert, setShowAlert] = useState(false);
     const [alert, setAlert] = useState('');
+    const [token, setToken] = useState('');
+
     const handleInputChange = (usuario) => {
         setUsuario(preValue => ({
             ...preValue,
@@ -21,11 +24,13 @@ function Login() {
         e.preventDefault();
         try {
             const res = await LoginService.authenticate(usuario);
+            const syncToken = res.data;
+            const resp = await LoginService.getUserDetails(syncToken, usuario.email);
+            setToken(syncToken);
+            setUsuarioLogado(resp.data);
+            setAlert("Bem vindo " + resp.data.nome);
             setVariant('success');
             setShowAlert(true);
-            setAlert('token = ' + res.data);
-            console.log(res.status);
-            console.log(res.data);
             clearForm();
         } catch (err) {
             setShowAlert(true);

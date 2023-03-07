@@ -7,4 +7,15 @@ export class LoginService {
         return axios.post('http://localhost:8080/login', usuario);
     }
 
+    static getUserDetails(token, email) {
+        const bToken = 'Bearer ' + token;
+        console.log(bToken);
+        return axios.get('http://localhost:8080/usuario/' + email,
+        {
+            headers: {
+                'Authorization': `${bToken}` 
+            }
+        });
+    }
+
 }
