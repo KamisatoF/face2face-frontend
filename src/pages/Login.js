@@ -1,19 +1,19 @@
 import { Alert, Form } from "react-bootstrap";
-import { Header } from "../components/Header";
-import { useState } from "react";
+import Header from "../components/Header";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
     const [usuario, setUsuario] = useState({});
-    const [variant, setVariant] = useState('danger');
     const [showAlert, setShowAlert] = useState(false);
     const [alert, setAlert] = useState('');
-    const { authenticated, handleLogin, userData, handleLogout } = useContext(Context);
-
-
+    const { handleLogin } = useContext(Context);
+    const navigate = useNavigate();
+    
     const handleInputChange = (usuario) => {
         setUsuario(preValue => ({
             ...preValue,
@@ -23,36 +23,19 @@ function Login() {
 
     const authService = async(e) => {
         e.preventDefault();
-        try {
-            handleLogin(usuario);
-            if (authenticated) {
-                setAlert("Bem vindo " + userData.nome);
-                setVariant('success');
-                setShowAlert(true);
-                clearForm(); 
-            }
-           
-        } catch (err) {
+        const auth = await handleLogin(usuario);
+        console.log(auth);
+        if (auth) {
+            navigate("/");
+        } else {
+            setAlert("Erro ao fazer login.");
             setShowAlert(true);
-            setVariant('danger');
-            setAlert("Erro inesperado ao tentar efetuar o login.");
-            if (err.response.status === 403) {
-                setAlert("Usuário ou senha inválido.");
-            }      
-        }
-    }
-
-    const clearForm = () => {
-        setUsuario({
-            email: '',
-            senha: ''
-        })        
+        }            
     }
 
     return (
         <div>
             <Header />
-
             <Container className="mt-5">
                 <Form>
 
@@ -70,15 +53,11 @@ function Login() {
                         Login
                     </Button>{' '}
 
-                    <Button variant="dark" type="submit" onClick={() => handleLogout()}>
-                        Logout
-                    </Button>{' '}
-
-                    <Button variant="dark" type="submit" href="/cadastro">
+                    <Button variant="dark" type="submit" onClick={() => navigate("/cadastro")}>
                         Cadastrar
                     </Button>
 
-                    <Alert variant={variant} show={showAlert} onClose={() => setShowAlert(false)} dismissible>
+                    <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible>
                         {alert}
                     </Alert>
 

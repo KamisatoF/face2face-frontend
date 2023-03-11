@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import { ContentContainerDiv, CrudeDiv, CrudeTitle, Input, InputDiv, InputText, IconImage } from "../styles/ContentContainer";
 import deleteIcon from '../images/excluir_sf.png';
 import saveIcon from '../images/save_sf.png';

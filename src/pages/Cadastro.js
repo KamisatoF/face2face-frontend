@@ -1,11 +1,11 @@
 import { Alert, Form } from "react-bootstrap";
 import { useState } from "react";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
 import { CadastroService } from "../api/CadastroService";
 
-function Login() {
+function Cadastro() {
     
     const [showSuccess, setShowSuccess] = useState(false);
     const [showError, setShowError] = useState(false);
@@ -99,4 +99,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Cadastro;
