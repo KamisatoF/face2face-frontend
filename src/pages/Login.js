@@ -3,15 +3,16 @@ import { Header } from "../components/Header";
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
-import { LoginService } from "../api/LoginService";
+import React, { useContext } from "react";
+import { Context } from "../context/AuthContext";
 
 function Login() {
     const [usuario, setUsuario] = useState({});
-    const [usuarioLogado, setUsuarioLogado] = useState({});
     const [variant, setVariant] = useState('danger');
     const [showAlert, setShowAlert] = useState(false);
     const [alert, setAlert] = useState('');
-    const [token, setToken] = useState('');
+    const { authenticated, handleLogin, userData, handleLogout } = useContext(Context);
+
 
     const handleInputChange = (usuario) => {
         setUsuario(preValue => ({
@@ -23,15 +24,14 @@ function Login() {
     const authService = async(e) => {
         e.preventDefault();
         try {
-            const res = await LoginService.authenticate(usuario);
-            const syncToken = res.data;
-            const resp = await LoginService.getUserDetails(syncToken, usuario.email);
-            setToken(syncToken);
-            setUsuarioLogado(resp.data);
-            setAlert("Bem vindo " + resp.data.nome);
-            setVariant('success');
-            setShowAlert(true);
-            clearForm();
+            handleLogin(usuario);
+            if (authenticated) {
+                setAlert("Bem vindo " + userData.nome);
+                setVariant('success');
+                setShowAlert(true);
+                clearForm(); 
+            }
+           
         } catch (err) {
             setShowAlert(true);
             setVariant('danger');
@@ -68,6 +68,10 @@ function Login() {
 
                     <Button variant="dark" type="submit" onClick={(e) => authService(e)}>
                         Login
+                    </Button>{' '}
+
+                    <Button variant="dark" type="submit" onClick={() => handleLogout()}>
+                        Logout
                     </Button>{' '}
 
                     <Button variant="dark" type="submit" href="/cadastro">
