@@ -22,10 +22,13 @@ function Cadastro() {
     };
 
     useEffect(() => {
-        if (authenticated) {
-            setUsuario(userData);
+        const setUser = () => {
+            if (authenticated) {
+                setUsuario(userData);
+            }
         }
-    }, [])
+        setUser();
+    }, [authenticated, userData])
 
     const insert = async (e) => {
         e.preventDefault();
