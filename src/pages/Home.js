@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import { ContentContainerDiv } from "../styles/ContentContainer";
 
 function Home() {

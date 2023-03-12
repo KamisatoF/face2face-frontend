@@ -1,22 +1,19 @@
-import axios from 'axios'
-
-const BASE_URL = 'https://puc-face2face.herokuapp.com/servicos/';
-const withBaseUrl = path => '${BASE_URL}${path}';
+import api from "./api"
 
 export class ServiceService {
-    static findAll() {
-        return axios('https://puc-face2face.herokuapp.com/servicos/findAll/')
+    static findAll(id) {
+        return api.get('/servicos/' + id);
     }
 
     static insert(service) {
-        return axios.post('https://puc-face2face.herokuapp.com/servicos/', service).then(this.findAll)
+        return api.post('/servicos', service).then(this.findAll)
     }
 
     static delete(id) {
-        return axios.delete('https://puc-face2face.herokuapp.com/servicos/' + id).then(this.findAll)
+        return api.delete('/servicos/' + id).then(this.findAll)
     }
 
     static update(service) {
-        return axios.put('https://puc-face2face.herokuapp.com/servicos/' + service.id, service, service.id).then(this.findAll)
+        return api.put('/servicos/' + service.id, service, service.id).then(this.findAll)
     }
 }
