@@ -11,13 +11,8 @@ import { Context } from "../context/AuthContext";
 function ServiceCRUD() {
     const [services, setServices] = useState([]);
     const { userData } = useContext(Context);
-
-    const fetchServices = async () => {
-        const response = await ServiceService.findAll(userData.id);
-        setServices(response.data);
-    }
-
     const [values, setValues] = useState({});
+
     const handleInputChange = (value) => {
         setValues(preValue => ({
             ...preValue,
@@ -26,17 +21,20 @@ function ServiceCRUD() {
     };
 
     useEffect(() => { 
-        fetchServices();
-    }, [])
+        const fetch = async() => {
+            const response = await ServiceService.findAll(userData.id);
+            setServices(response.data);
+        }
+        fetch();
+    }, [userData])
 
     const mergeService = async () => {
-        var response = null;
         if (values.id === 0) {
             console.log("inserindo..");
-            response = await ServiceService.insert(values);
+            await ServiceService.insert(values);
         } else {
             console.log("atualizando..");
-            response = await ServiceService.update(values);
+            await ServiceService.update(values);
         }
         clearFormService();
     }
