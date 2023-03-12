@@ -34,7 +34,7 @@ function ContaBancaria() {
         { codigo: "637", nome: " Banco Sofisa S.A. " }
     ];
 
-    const fetchServices = async () => {
+    const fetchContasBancarias = async () => {
         const response = await ContaBancariaService.findAll(userData.id);
         setContasBancarias(response.data);
     }
@@ -47,12 +47,15 @@ function ContaBancaria() {
     };
 
     useEffect(() => {
-        fetchServices();
-    }, [])
+        const fetch = async() => {
+            const response = await ContaBancariaService.findAll(userData.id);
+            setContasBancarias(response.data);
+        }
+        fetch();
+    }, [userData])
 
     const mergeService = async (e) => {
         e.preventDefault();
-        var response = null;
         contaBancaria.userid = userData.id;
         contaBancaria.banco = bancoSelection.at(0).codigo;
         if (contaBancaria.id === 0 || contaBancaria.id === undefined) {
@@ -72,21 +75,21 @@ function ContaBancaria() {
             }
         }
 
-        fetchServices();
+        fetchContasBancarias();
         handleClose();
         setShowSuccess(true);
     }
 
     const handleDelete = async (id) => {
         try {
-            const response = await ContaBancariaService.delete(id);
+            await ContaBancariaService.delete(id);
         } catch (error) {
             //Ignoring CORS error
         }
 
         setAlert("Registro excluido com sucesso!");
         setShowSuccess(true);
-        fetchServices();
+        fetchContasBancarias();
     }
 
     const handleEdit = async (ser) => {
@@ -111,19 +114,11 @@ function ContaBancaria() {
         handleShow();
     }
 
-    const normalizeDecimalInputChange = (value) => {
-        const normalized = Number(value.target.value).toFixed(2);
-        setContaBancaria(preValue => ({
-            ...preValue,
-            [value.target.name]: normalized,
-        }))
-    };
-
     const renderServices = (cc, index) => {
         const bancoEx = bancos.filter(x => x.codigo === cc.banco).at(0);
         return (
             <tr key={index}>
-                <th>{bancoEx != undefined ? bancoEx.codigo + " - " + bancoEx.nome : ""}</th>                
+                <th>{bancoEx !== undefined ? bancoEx.codigo + " - " + bancoEx.nome : ""}</th>                
                 <th>{cc.agencia}</th>
                 <th>{cc.cc}</th>
                 <th>{cc.digito}</th>

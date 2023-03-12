@@ -18,7 +18,7 @@ function Equipamento() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const fetchServices = async () => {
+    const fetchEquipamentos = async () => {
         const response = await EquipamentoService.findAll(userData.id);
         setEquipamentos(response.data);
     }
@@ -31,12 +31,15 @@ function Equipamento() {
     };
 
     useEffect(() => {
-        fetchServices();
-    }, [])
+        const fetch = async() =>{
+            const response = await EquipamentoService.findAll(userData.id);
+            setEquipamentos(response.data);
+        }
+        fetch();
+    }, [userData])
 
     const mergeService = async (e) => {
         e.preventDefault();
-        var response = null;
         equipamento.userid = userData.id;
         if (equipamento.id === 0 || equipamento.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
@@ -56,20 +59,20 @@ function Equipamento() {
         }
 
         setShowSuccess(true);
-        fetchServices();
+        fetchEquipamentos();
         handleClose();
     }
 
     const handleDelete = async (id) => {
         try {
-            const response = await EquipamentoService.delete(id);
+            await EquipamentoService.delete(id);
         } catch (error) {
             //Ignoring CORS error
         }
 
         setAlert("Registro excluido com sucesso!");
         setShowSuccess(true);
-        fetchServices();
+        fetchEquipamentos();
     }
 
     const handleEdit = async (ser) => {
@@ -90,14 +93,6 @@ function Equipamento() {
 
         handleShow();
     }
-
-    const normalizeDecimalInputChange = (value) => {
-        const normalized = Number(value.target.value).toFixed(2);
-        setEquipamento(preValue => ({
-            ...preValue,
-            [value.target.name]: normalized,
-        }))
-    };
 
     const renderServices = (equip, index) => {
         return (

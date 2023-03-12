@@ -19,7 +19,7 @@ function ServiceReformed() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const fetchServices = async () => {
+    const fetchServices = async() => {
         const response = await ServiceService.findAll(userData.id);
         setServices(response.data);
     }
@@ -32,12 +32,15 @@ function ServiceReformed() {
     };
 
     useEffect(() => {
-        fetchServices();
-    }, [])
+        const fetch = async() =>{
+            const response = await ServiceService.findAll(userData.id);
+            setServices(response.data);
+        }
+        fetch();
+    }, [userData])
 
     const mergeService = async (e) => {
         e.preventDefault();
-        var response = null;
         servico.userid = userData.id;
         if (servico.id === 0 || servico.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
@@ -63,7 +66,7 @@ function ServiceReformed() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await ServiceService.delete(id);
+            await ServiceService.delete(id);
         } catch (error) {
             //Ignoring CORS error
         }
@@ -92,14 +95,6 @@ function ServiceReformed() {
 
         handleShow();
     }
-
-    const normalizeDecimalInputChange = (value) => {
-        const normalized = Number(value.target.value).toFixed(2);
-        setServico(preValue => ({
-            ...preValue,
-            [value.target.name]: normalized,
-        }))
-    };
 
     const renderServices = (s, index) => {
         return (
