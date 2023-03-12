@@ -12,8 +12,8 @@ function Header() {
     const loginControll = () => {
         if (authenticated) {
             return (
-                <NavDropdown title={"Olá " + userData.nome}>
-                    <NavDropdown.Item></NavDropdown.Item>
+                <NavDropdown title={"Olá " + userData.nome} >
+                    <NavDropdown.Item onClick={() => navigate("/cadastro")}>Alterar Cadastro</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                     <NavDropdown.Item></NavDropdown.Item>
                 </NavDropdown>
@@ -32,7 +32,6 @@ function Header() {
         navigate("/");
     }
 
-
     return (
         <Navbar bg="light" variant="light">
             <Container>
@@ -48,7 +47,7 @@ function Header() {
                 <Navbar.Collapse id="navbarscroll">
                     <Nav className="me-auto my-2 my-lg-0"
                         style={{ maxHeight: '100px' }}>
-                        <Nav.Link href="/service">Serviços</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/serviceRef")}>Serviços</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">

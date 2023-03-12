@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 import React, { useContext } from 'react';
 import { Context } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
+import ServiceReformed from './pages/ServiceReformed';
 
 const PrivateRoute = ({ children, navigateTo }) => {
   const { authenticated } = useContext(Context);
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/service" element={<PrivateRoute navigateTo="/login"><ServiceCRUD /></PrivateRoute>} />
+          <Route exact path="/serviceRef" element={<PrivateRoute navigateTo="/login"><ServiceReformed /></PrivateRoute>} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/cadastro" element={<Cadastro />} />
         </Routes>

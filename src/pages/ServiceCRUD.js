@@ -2,39 +2,18 @@ import Header from "../components/Header";
 import { ContentContainerDiv, CrudeDiv, CrudeTitle, Input, InputDiv, InputText, IconImage } from "../styles/ContentContainer";
 import deleteIcon from '../images/excluir_sf.png';
 import saveIcon from '../images/save_sf.png';
-import { useEffect, useState } from "react";
 import { ServiceService } from "../api/ServiceService";
 import newIcon from '../images/novo_sf.png';
 import { Table, TableData, TableRow, FieldDiv } from "../styles/TableContainer";
-
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../context/AuthContext";
 
 function ServiceCRUD() {
     const [services, setServices] = useState([]);
-    
+    const { userData } = useContext(Context);
+
     const fetchServices = async () => {
-        const response = await ServiceService.findAll();
-        setServices(response.data);
-    }
-
-    useEffect(() => { 
-        fetchServices();
-    }, [])
-
-    const mergeService = async () => {
-        console.log(values.id);
-        var response = null;
-        if (values.id === 0) {
-            response = await ServiceService.insert(values);
-        } else {
-            response = await ServiceService.update(values);
-        }
-        clearFormService();
-        setServices(response.data);
-    }
-
-    const deleteService = async () => {
-        const response = await ServiceService.delete(values.id);
-        clearFormService();
+        const response = await ServiceService.findAll(userData.id);
         setServices(response.data);
     }
 
@@ -45,6 +24,28 @@ function ServiceCRUD() {
             [value.target.name]: value.target.value,
         }))
     };
+
+    useEffect(() => { 
+        fetchServices();
+    }, [])
+
+    const mergeService = async () => {
+        var response = null;
+        if (values.id === 0) {
+            console.log("inserindo..");
+            response = await ServiceService.insert(values);
+        } else {
+            console.log("atualizando..");
+            response = await ServiceService.update(values);
+        }
+        clearFormService();
+    }
+
+    const deleteService = async () => {
+        const response = await ServiceService.delete(values.id);
+        clearFormService();
+        setServices(response.data);
+    }
 
     const normalizeDecimalInputChange = (value) => {
         const normalized = Number(value.target.value).toFixed(2);

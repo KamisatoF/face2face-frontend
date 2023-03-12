@@ -42,7 +42,20 @@ function AuthProvider({ children }) {
             console.log(error);
             return false;
         }
+    }
 
+    async function refreshUserData(email) {
+        try {
+            const res2 = await LoginService.getUserDetail(email);
+            const userData = res2.data;
+            localStorage.removeItem('userData');
+            localStorage.setItem('userData', JSON.stringify(userData));
+            setUserData(userData);
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     }
 
     function handleLogout() {
@@ -61,7 +74,7 @@ function AuthProvider({ children }) {
     }
 
     return (
-        <Context.Provider value={{ authenticated, handleLogin, userData, handleLogout }}>
+        <Context.Provider value={{ authenticated, handleLogin, userData, handleLogout, refreshUserData }}>
             {children}
         </Context.Provider>
     )

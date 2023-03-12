@@ -1,38 +1,55 @@
 import { Alert, Form } from "react-bootstrap";
-import { useState } from "react";
 import Header from "../components/Header";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
 import { CadastroService } from "../api/CadastroService";
+import React, { useContext, useState, useEffect } from "react";
+import { Context } from "../context/AuthContext";
 
 function Cadastro() {
-    
+    const { authenticated, userData, refreshUserData } = useContext(Context);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showLink, setShowLink] = useState("");
     const [showError, setShowError] = useState(false);
-    const [alert, setAlert] = useState();
+    const [alert, setAlert] = useState("");
     const [usuario, setUsuario] = useState({});
+
     const handleInputChange = (usuario) => {
-        setUsuario(preValue => ({ 
+        setUsuario(preValue => ({
             ...preValue,
             [usuario.target.name]: usuario.target.value,
         }))
     };
 
-    const insert = async(e) => {
+    useEffect(() => {
+        if (authenticated) {
+            setUsuario(userData);
+        }
+    }, [])
+
+    const insert = async (e) => {
         e.preventDefault();
         try {
-            const res = await CadastroService.insert(usuario);
-            if (res.status === 200) {
-                setShowSuccess(true);
-                setShowError(false);
-                setAlert(res.data);
+            if (!authenticated) {
+                console.log("inserindo..");
+                await CadastroService.insert(usuario);
                 clearForm();
+                setShowLink("Seguir para login.");
+            } else {
+                console.log("atualizando..");
+                await CadastroService.update(usuario);
+                setShowLink("");
+                refreshUserData(usuario.email);
             }
+            setShowSuccess(true);
+            setShowError(false);
+            setAlert("Operação realizada com sucesso. ");
+
         } catch (err) {
             setShowSuccess(false);
             setShowError(true);
-            setAlert(err.response.data);
-        }       
+            setAlert("Erro ao efetuar operação.");
+        }
     }
 
     const clearForm = () => {
@@ -42,8 +59,8 @@ function Cadastro() {
             email: '',
             telefone: '',
             senha: '',
-            recebeInformacoesEmailString: '' 
-        })        
+            recebeInformacoesEmailString: ''
+        })
     }
 
     return (
@@ -80,19 +97,19 @@ function Cadastro() {
                     <Form.Check name="recebeInformacoesEmailString" type="checkbox" id="termos" value={usuario.recebeInformacoesEmailString || ''} label="Desejo receber informações por e-mail" onChange={handleInputChange}>
                     </Form.Check>
 
-                    <Button variant="dark" type="submit" onClick={(e) => {insert(e)}}>
+                    <Button variant="dark" type="submit" onClick={(e) => { insert(e) }}>
                         Salvar
                     </Button>{''}
 
                     <Alert variant='success' show={showSuccess && !showError} onClose={() => setShowSuccess(false)} dismissible>
                         {alert}
-                        <Alert.Link href="/login"> Seguir para Login.</Alert.Link>
+                        <Alert.Link href="/login"> {showLink}</Alert.Link>
                     </Alert>
 
                     <Alert variant='danger' show={!showSuccess && showError} onClose={() => setShowError(false)} dismissible>
                         {alert}
                     </Alert>
-                                        
+
                 </Form>
             </Container>
         </div>

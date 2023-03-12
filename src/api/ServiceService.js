@@ -1,8 +1,8 @@
 import api from "./api"
 
 export class ServiceService {
-    static findAll() {
-        return api('/servicos/findAll/')
+    static findAll(id) {
+        return api.get('/servicos/' + id);
     }
 
     static insert(service) {
