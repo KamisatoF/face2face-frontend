@@ -44,10 +44,12 @@ function Header() {
                     />{' '}
                     Face2Face
                 </Navbar.Brand>
-                <Navbar.Collapse id="navbarscroll">
-                    <Nav className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}>
+                <Navbar.Collapse id="navbarscroll" >
+                    <Nav>
                         <Nav.Link onClick={() => navigate("/serviceRef")}>Serviços</Nav.Link>
+                    </Nav>
+                    <Nav >
+                        <Nav.Link onClick={() => navigate("/equipamento")}>Equipamentos</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
