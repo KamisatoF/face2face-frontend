@@ -38,7 +38,6 @@ function Equipamento() {
         e.preventDefault();
         var response = null;
         equipamento.userid = userData.id;
-        console.log(equipamento.userid);
         if (equipamento.id === 0 || equipamento.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
             try {
@@ -80,9 +79,6 @@ function Equipamento() {
         equipamento.detalhes = ser.detalhes;
         equipamento.preco = ser.preco;
         handleShow();
-        await mergeService();
-        fetchServices();
-
     }
 
     const handleNew = () => {

@@ -14,6 +14,7 @@ function Header() {
             return (
                 <NavDropdown title={"Olá " + userData.nome} >
                     <NavDropdown.Item onClick={() => navigate("/cadastro")}>Alterar Cadastro</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => navigate("/contabancaria")}>Gerenciar Contas</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                     <NavDropdown.Item></NavDropdown.Item>
                 </NavDropdown>

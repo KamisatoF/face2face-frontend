@@ -39,7 +39,6 @@ function ServiceReformed() {
         e.preventDefault();
         var response = null;
         servico.userid = userData.id;
-        console.log(servico.userid);
         if (servico.id === 0 || servico.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
             try {
@@ -81,8 +80,6 @@ function ServiceReformed() {
         servico.detalhes = ser.detalhes;
         servico.preco = ser.preco;
         handleShow();
-        await mergeService();
-        fetchServices();
 
     }
 
