@@ -28,7 +28,7 @@ function Login() {
         if (auth) {
             navigate("/");
         } else {
-            setAlert("Erro ao fazer login.");
+            setAlert("Erro ao fazer login. Confira seu email e senha.");
             setShowAlert(true);
         }            
     }

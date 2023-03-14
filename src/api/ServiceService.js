@@ -6,14 +6,14 @@ export class ServiceService {
     }
 
     static insert(service) {
-        return api.post('/servicos', service).then(this.findAll)
+        return api.post('/servicos', service)
     }
 
     static delete(id) {
-        return api.delete('/servicos/' + id).then(this.findAll)
+        return api.delete('/servicos/' + id)
     }
 
     static update(service) {
-        return api.put('/servicos/' + service.id, service, service.id).then(this.findAll)
+        return api.put('/servicos/' + service.id, service, service.id)
     }
 }

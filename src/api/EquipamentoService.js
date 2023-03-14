@@ -6,14 +6,14 @@ export class EquipamentoService {
     }
 
     static insert(equipamento) {
-        return api.post('/equipamentos', equipamento).then(this.findAll)
+        return api.post('/equipamentos', equipamento)
     }
 
     static delete(id) {
-        return api.delete('/equipamentos/' + id).then(this.findAll)
+        return api.delete('/equipamentos/' + id)
     }
 
     static update(equipamento) {
-        return api.put('/equipamentos/' + equipamento.id, equipamento, equipamento.id).then(this.findAll)
+        return api.put('/equipamentos/' + equipamento.id, equipamento, equipamento.id)
     }
 }

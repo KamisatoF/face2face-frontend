@@ -15,11 +15,10 @@ function ServiceReformed() {
     const [alert, setAlert] = useState("");
     const { userData } = useContext(Context);
     const [servico, setServico] = useState({});
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const fetchServices = async() => {
+    const fetchServices = async () => {
         const response = await ServiceService.findAll(userData.id);
         setServices(response.data);
     }
@@ -32,7 +31,7 @@ function ServiceReformed() {
     };
 
     useEffect(() => {
-        const fetch = async() =>{
+        const fetch = async () => {
             const response = await ServiceService.findAll(userData.id);
             setServices(response.data);
         }
@@ -42,21 +41,17 @@ function ServiceReformed() {
     const mergeService = async (e) => {
         e.preventDefault();
         servico.userid = userData.id;
+        servico.preco = parseFloat(servico.preco);
         if (servico.id === 0 || servico.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
-            try {
-                await ServiceService.insert(servico);
-            } catch (error) {
-                //Ignoring CORS error
-            }
+
+            await ServiceService.insert(servico);
 
         } else {
             setAlert("Dados atualizados com sucesso!");
-            try {
-                await ServiceService.update(servico);
-            } catch (error) {
-                //Ignoring CORS error
-            }
+
+            await ServiceService.update(servico);
+
         }
 
         setShowSuccess(true);
@@ -156,7 +151,7 @@ function ServiceReformed() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormPrec">
                             <Form.Label>Preço</Form.Label>
-                            <Form.Control name="preco" type="text" placeholder="Preço" value={servico.preco} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control name="preco" type="number" placeholder="Preço" value={servico.preco} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
 
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>

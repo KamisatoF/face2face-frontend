@@ -47,7 +47,7 @@ function ContaBancaria() {
     };
 
     useEffect(() => {
-        const fetch = async() => {
+        const fetch = async () => {
             const response = await ContaBancariaService.findAll(userData.id);
             setContasBancarias(response.data);
         }
@@ -60,19 +60,10 @@ function ContaBancaria() {
         contaBancaria.banco = bancoSelection.at(0).codigo;
         if (contaBancaria.id === 0 || contaBancaria.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
-            try {
-                await ContaBancariaService.insert(contaBancaria);
-            } catch (error) {
-                //Ignoring CORS error
-            }
-
+            await ContaBancariaService.insert(contaBancaria);
         } else {
             setAlert("Dados atualizados com sucesso!");
-            try {
-                await ContaBancariaService.update(contaBancaria);
-            } catch (error) {
-                //Ignoring CORS error
-            }
+            await ContaBancariaService.update(contaBancaria);
         }
 
         fetchContasBancarias();
@@ -81,12 +72,7 @@ function ContaBancaria() {
     }
 
     const handleDelete = async (id) => {
-        try {
-            await ContaBancariaService.delete(id);
-        } catch (error) {
-            //Ignoring CORS error
-        }
-
+        await ContaBancariaService.delete(id);
         setAlert("Registro excluido com sucesso!");
         setShowSuccess(true);
         fetchContasBancarias();
@@ -118,7 +104,7 @@ function ContaBancaria() {
         const bancoEx = bancos.filter(x => x.codigo === cc.banco).at(0);
         return (
             <tr key={index}>
-                <th>{bancoEx !== undefined ? bancoEx.codigo + " - " + bancoEx.nome : ""}</th>                
+                <th>{bancoEx !== undefined ? bancoEx.codigo + " - " + bancoEx.nome : ""}</th>
                 <th>{cc.agencia}</th>
                 <th>{cc.cc}</th>
                 <th>{cc.digito}</th>
@@ -169,19 +155,19 @@ function ContaBancaria() {
                     <Form>
                         <Form.Group className="mb-3" controlId="FormBanco">
                             <Form.Label>Banco</Form.Label>
-                            <Typeahead id="typeHead" labelKey="nome" onChange={setBancoSelection} options={bancos} placeholder="Escolha seu banco" selected={bancoSelection}/>
+                            <Typeahead id="typeHead" labelKey="nome" onChange={setBancoSelection} options={bancos} placeholder="Escolha seu banco" selected={bancoSelection} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormAgencia">
                             <Form.Label>Agência</Form.Label>
-                            <Form.Control name="agencia" type="textarea" placeholder="Agêcia sem o dígito" value={contaBancaria.agencia} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control name="agencia" type="number" placeholder="Agêcia sem o dígito" value={contaBancaria.agencia} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormCC">
                             <Form.Label>Número da Conta</Form.Label>
-                            <Form.Control name="cc" type="textarea" placeholder="Número da Conta sem o dígito" value={contaBancaria.cc} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control name="cc" type="number" placeholder="Número da Conta sem o dígito" value={contaBancaria.cc} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormDet">
                             <Form.Label>Dígito</Form.Label>
-                            <Form.Control name="digito" type="textarea" placeholder="Dígito da conta" value={contaBancaria.digito} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control name="digito" type="number" placeholder="Dígito da conta" value={contaBancaria.digito} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
 
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>

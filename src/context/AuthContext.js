@@ -26,18 +26,17 @@ function AuthProvider({ children }) {
         try {
             const res = await LoginService.authenticate(usuario);
             const token = res.data;
-            console.log(token);
             localStorage.setItem('token', token);
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             const res2 = await LoginService.getUserDetail(usuario.email);
             const userData = res2.data;
             localStorage.setItem('userData', JSON.stringify(userData));
             setUserData(userData);
-            console.log(userData);
             setAuthenticated(true);
 
-            return true;
+            console.log(userData.nome + " logged in.");
 
+            return true;
         } catch (error) {
             console.log(error);
             return false;

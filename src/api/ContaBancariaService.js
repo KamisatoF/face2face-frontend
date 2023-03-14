@@ -6,14 +6,14 @@ export class ContaBancariaService {
     }
 
     static insert(contabancaria) {
-        return api.post('/contabancaria', contabancaria).then(this.findAll)
+        return api.post('/contabancaria', contabancaria)
     }
 
     static delete(id) {
-        return api.delete('/contabancaria/' + id).then(this.findAll)
+        return api.delete('/contabancaria/' + id)
     }
 
     static update(contabancaria) {
-        return api.put('/contabancaria/' + contabancaria.id, contabancaria, contabancaria.id).then(this.findAll)
+        return api.put('/contabancaria/' + contabancaria.id, contabancaria, contabancaria.id)
     }
 }

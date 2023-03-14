@@ -14,7 +14,6 @@ function Equipamento() {
     const [alert, setAlert] = useState("");
     const { userData } = useContext(Context);
     const [equipamento, setEquipamento] = useState({});
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -31,7 +30,7 @@ function Equipamento() {
     };
 
     useEffect(() => {
-        const fetch = async() =>{
+        const fetch = async () => {
             const response = await EquipamentoService.findAll(userData.id);
             setEquipamentos(response.data);
         }
@@ -43,19 +42,10 @@ function Equipamento() {
         equipamento.userid = userData.id;
         if (equipamento.id === 0 || equipamento.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
-            try {
-                await EquipamentoService.insert(equipamento);
-            } catch (error) {
-                //Ignoring CORS error
-            }
-
+            await EquipamentoService.insert(equipamento);
         } else {
             setAlert("Dados atualizados com sucesso!");
-            try {
-                await EquipamentoService.update(equipamento);
-            } catch (error) {
-                //Ignoring CORS error
-            }
+            await EquipamentoService.update(equipamento);
         }
 
         setShowSuccess(true);
@@ -64,12 +54,7 @@ function Equipamento() {
     }
 
     const handleDelete = async (id) => {
-        try {
-            await EquipamentoService.delete(id);
-        } catch (error) {
-            //Ignoring CORS error
-        }
-
+        await EquipamentoService.delete(id);
         setAlert("Registro excluido com sucesso!");
         setShowSuccess(true);
         fetchEquipamentos();
