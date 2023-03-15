@@ -15,6 +15,8 @@ function Header() {
                 <NavDropdown title={"Olá " + userData.nome} >
                     <NavDropdown.Item onClick={() => navigate("/cadastro")}>Alterar Cadastro</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => navigate("/contabancaria")}>Gerenciar Contas</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => navigate("/")}>Cartões de Crédito</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => navigate("/")}>Relatórios</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                     <NavDropdown.Item></NavDropdown.Item>
                 </NavDropdown>
@@ -46,11 +48,16 @@ function Header() {
                     Face2Face
                 </Navbar.Brand>
                 <Navbar.Collapse id="navbarscroll" >
-                    <Nav>
-                        <Nav.Link onClick={() => navigate("/serviceRef")}>Serviços</Nav.Link>
-                    </Nav>
                     <Nav >
-                        <Nav.Link onClick={() => navigate("/equipamento")}>Equipamentos</Nav.Link>
+                        <NavDropdown title={"Guest"} >
+                            <NavDropdown.Item onClick={() => navigate("/")}>Espaços</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/serviceRef")}>Serviços</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/equipamento")}>Equipamentos</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/")}>Comodidades</NavDropdown.Item>
+                            <NavDropdown.Item></NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link onClick={() => navigate("/")}>Minhas Reservas</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/")}>Verificar Agenda</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
