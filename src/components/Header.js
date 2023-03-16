@@ -16,7 +16,7 @@ function Header() {
                     <NavDropdown.Item onClick={() => navigate("/cadastro")}>Alterar Cadastro</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => navigate("/contabancaria")}>Gerenciar Contas</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => navigate("/")}>Cartões de Crédito</NavDropdown.Item>
-                    <NavDropdown.Item onClick={() => navigate("/")}>Relatórios</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => navigate("relatoriolocacao")}>Relatório de Locações</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                     <NavDropdown.Item></NavDropdown.Item>
                 </NavDropdown>

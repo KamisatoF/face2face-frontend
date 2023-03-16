@@ -24,7 +24,6 @@ function Login() {
     const authService = async(e) => {
         e.preventDefault();
         const auth = await handleLogin(usuario);
-        console.log(auth);
         if (auth) {
             navigate("/");
         } else {

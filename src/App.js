@@ -12,6 +12,7 @@ import { Navigate } from 'react-router-dom';
 import ServiceReformed from './pages/ServiceReformed';
 import Equipamento from './pages/Equipamento';
 import ContaBancaria from './pages/ContaBancaria';
+import RelatorioLocacao from './pages/RelatorioLocacao';
 
 const PrivateRoute = ({ children, navigateTo }) => {
   const { authenticated } = useContext(Context);
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/serviceRef" element={<PrivateRoute navigateTo="/login"><ServiceReformed /></PrivateRoute>} />
           <Route exact path="/equipamento" element={<PrivateRoute navigateTo="/login"><Equipamento /></PrivateRoute>} />
           <Route exact path="/contabancaria" element={<PrivateRoute navigateTo="/login"><ContaBancaria /></PrivateRoute>} />
+          <Route exact path="/relatoriolocacao" element={<PrivateRoute navigateTo="/login"><RelatorioLocacao /></PrivateRoute>} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/cadastro" element={<Cadastro />} />
         </Routes>
