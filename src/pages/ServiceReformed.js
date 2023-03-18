@@ -44,12 +44,10 @@ function ServiceReformed() {
         servico.preco = parseFloat(servico.preco);
         if (servico.id === 0 || servico.id === undefined) {
             setAlert("Dados inseridos com sucesso!");
-
             await ServiceService.insert(servico);
 
         } else {
             setAlert("Dados atualizados com sucesso!");
-
             await ServiceService.update(servico);
 
         }
@@ -60,11 +58,8 @@ function ServiceReformed() {
     }
 
     const handleDelete = async (id) => {
-        try {
-            await ServiceService.delete(id);
-        } catch (error) {
-            //Ignoring CORS error
-        }
+
+        await ServiceService.delete(id);
 
         setAlert("Registro excluido com sucesso!");
         setShowSuccess(true);
@@ -143,15 +138,15 @@ function ServiceReformed() {
                     <Form>
                         <Form.Group className="mb-3" controlId="FormDesc">
                             <Form.Label>Descrição</Form.Label>
-                            <Form.Control name="descricao" type="text" placeholder="Descrição" value={servico.descricao} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="descricao" type="text" placeholder="Descrição" value={servico.descricao} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormDet">
                             <Form.Label>Detalhes</Form.Label>
-                            <Form.Control name="detalhes" type="textarea" placeholder="Detalhes do serviço" value={servico.detalhes} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="detalhes" type="textarea" placeholder="Detalhes do serviço" value={servico.detalhes} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormPrec">
                             <Form.Label>Preço</Form.Label>
-                            <Form.Control name="preco" type="number" placeholder="Preço" value={servico.preco} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="preco" type="number" placeholder="Preço" value={servico.preco} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
 
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>

@@ -44,11 +44,11 @@ function RelatorioLocacao() {
                 <Form>
                     <Form.Group className="mb-3" controlId="FormDataInicio">
                         <Form.Label>Data Início</Form.Label>
-                        <Form.Control name="dataInicio" type="date" value={relatorio.dataInicio || ''} onChange={handleInputChange} ></Form.Control>
+                        <Form.Control required name="dataInicio" type="date" value={relatorio.dataInicio || ''} onChange={handleInputChange} ></Form.Control>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="FormDataFim">
                         <Form.Label>Data Fim</Form.Label>
-                        <Form.Control name="dataFim" type="date" value={relatorio.dataFim || ''} onChange={handleInputChange} ></Form.Control>
+                        <Form.Control required name="dataFim" type="date" value={relatorio.dataFim || ''} onChange={handleInputChange} ></Form.Control>
                     </Form.Group>
                     <Button variant="dark" type="submit" onClick={(e) => { generateReport(e) }}>
                         Gerar Relatório

@@ -159,15 +159,15 @@ function ContaBancaria() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormAgencia">
                             <Form.Label>Agência</Form.Label>
-                            <Form.Control name="agencia" type="number" placeholder="Agêcia sem o dígito" value={contaBancaria.agencia} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="agencia" type="number" placeholder="Agêcia sem o dígito" value={contaBancaria.agencia} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormCC">
                             <Form.Label>Número da Conta</Form.Label>
-                            <Form.Control name="cc" type="number" placeholder="Número da Conta sem o dígito" value={contaBancaria.cc} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="cc" type="number" placeholder="Número da Conta sem o dígito" value={contaBancaria.cc} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormDet">
                             <Form.Label>Dígito</Form.Label>
-                            <Form.Control name="digito" type="number" placeholder="Dígito da conta" value={contaBancaria.digito} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="digito" type="number" placeholder="Dígito da conta" value={contaBancaria.digito} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
 
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>

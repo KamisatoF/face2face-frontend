@@ -74,30 +74,30 @@ function Cadastro() {
 
                     <Form.Group className="mb-3" controlId="FormNome">
                         <Form.Label>Nome Completo</Form.Label>
-                        <Form.Control name="nome" type="text" placeholder="Nome Completo" value={usuario.nome || ''} onChange={handleInputChange} required></Form.Control>
+                        <Form.Control name="nome" type="text" placeholder="Nome Completo" value={usuario.nome} onChange={handleInputChange} required></Form.Control>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormCPF">
                         <Form.Label>CPF</Form.Label>
-                        <Form.Control name="cpf" type="text" placeholder="223.112.332-12" value={usuario.cpf || ''} onChange={handleInputChange} required></Form.Control>
+                        <Form.Control name="cpf" type="text" placeholder="223.112.332-12" value={usuario.cpf} onChange={handleInputChange} required></Form.Control>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormEmail">
                         <Form.Label>E-mail</Form.Label>
-                        <Form.Control name="email" type="email" placeholder="name@example.com" value={usuario.email || ''} onChange={handleInputChange} required></Form.Control>
+                        <Form.Control name="email" type="email" placeholder="name@example.com" value={usuario.email} onChange={handleInputChange} required></Form.Control>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormTelefone">
                         <Form.Label>Celular</Form.Label>
-                        <Form.Control name="telefone" type="text" placeholder="(11) 99999-9999" value={usuario.telefone || ''} onChange={handleInputChange} required></Form.Control>
+                        <Form.Control name="telefone" type="text" placeholder="(11) 99999-9999" value={usuario.telefone} onChange={handleInputChange} required></Form.Control>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="FormPassword">
                         <Form.Label>Senha</Form.Label>
-                        <Form.Control name="senha" type="password" placeholder="Senha" value={usuario.senha || ''} onChange={handleInputChange} required></Form.Control>
+                        <Form.Control name="senha" type="password" placeholder="Senha" value={usuario.senha} onChange={handleInputChange} required></Form.Control>
                     </Form.Group>
 
-                    <Form.Check name="recebeInformacoesEmailString" type="checkbox" id="termos" value={usuario.recebeInformacoesEmailString || ''} label="Desejo receber informações por e-mail" onChange={handleInputChange}>
+                    <Form.Check name="recebeInformacoesEmailString" type="checkbox" id="termos" value={usuario.recebeInformacoesEmailString} label="Desejo receber informações por e-mail" onChange={handleInputChange}>
                     </Form.Check>
 
                     <Button variant="dark" type="submit" onClick={(e) => { insert(e) }}>

@@ -129,11 +129,11 @@ function Equipamento() {
                     <Form>
                         <Form.Group className="mb-3" controlId="FormDesc">
                             <Form.Label>Descrição</Form.Label>
-                            <Form.Control name="descricao" type="text" placeholder="Descrição" value={equipamento.descricao} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="descricao" type="text" placeholder="Descrição" value={equipamento.descricao} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="FormDet">
                             <Form.Label>Detalhes</Form.Label>
-                            <Form.Control name="detalhes" type="textarea" placeholder="Detalhes do serviço" value={equipamento.detalhes} onChange={handleInputChange} ></Form.Control>
+                            <Form.Control required name="detalhes" type="textarea" placeholder="Detalhes do serviço" value={equipamento.detalhes} onChange={handleInputChange} ></Form.Control>
                         </Form.Group>
 
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>
