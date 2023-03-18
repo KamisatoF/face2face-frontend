@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import { Context } from "../context/AuthContext";
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/esm/Button";
-import { Form } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 import { RelatorioLocacaoService } from "../api/RelatorioLocacaoService";
 import { CSVLink } from "react-csv";
 
@@ -11,6 +11,8 @@ function RelatorioLocacao() {
     const [locacoes, setLocacoes] = useState([]);
     const { userData } = useContext(Context);
     const [relatorio, setRelatorio] = useState({});
+    const [showError, setShowError] = useState(false);
+    const [alert, setAlert] = useState("");
     const csvLink = useRef();
 
     const handleInputChange = (relatorio) => {
@@ -24,8 +26,14 @@ function RelatorioLocacao() {
         const fetch = async () => {
             relatorio.userid = userData.id
             if (relatorio.dataInicio !== undefined && relatorio.dataFim !== undefined) {
-                const response = await RelatorioLocacaoService.findAll(relatorio.userid, relatorio);
-                setLocacoes(response.data);
+                try {
+                    const response = await RelatorioLocacaoService.findAll(relatorio.userid, relatorio);
+                    setLocacoes(response.data);
+                } catch (error) {
+                    setShowError(true);
+                    setAlert(error.response.data);
+                }
+
             }
         }
         fetch();
@@ -35,6 +43,8 @@ function RelatorioLocacao() {
         e.preventDefault();
 
         csvLink.current.link.click();
+
+        setShowError(false);
     }
 
     return (
@@ -53,6 +63,10 @@ function RelatorioLocacao() {
                     <Button variant="dark" type="submit" onClick={(e) => { generateReport(e) }}>
                         Gerar Relatório
                     </Button>{''}
+
+                    <Alert variant='danger' show={showError} onClose={() => setShowError(false)} dismissible>
+                        {alert}
+                    </Alert>
 
                     <CSVLink
                         data={locacoes}

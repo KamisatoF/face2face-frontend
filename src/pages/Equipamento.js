@@ -11,6 +11,7 @@ function Equipamento() {
     const [equipamentos, setEquipamentos] = useState([]);
     const [show, setShow] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
     const [alert, setAlert] = useState("");
     const { userData } = useContext(Context);
     const [equipamento, setEquipamento] = useState({});
@@ -40,17 +41,23 @@ function Equipamento() {
     const mergeService = async (e) => {
         e.preventDefault();
         equipamento.userid = userData.id;
-        if (equipamento.id === 0 || equipamento.id === undefined) {
+        try {
+            if (equipamento.id === 0 || equipamento.id === undefined) {
+                await EquipamentoService.insert(equipamento);
+            } else {
+                await EquipamentoService.update(equipamento);
+            }
             setAlert("Dados inseridos com sucesso!");
-            await EquipamentoService.insert(equipamento);
-        } else {
-            setAlert("Dados atualizados com sucesso!");
-            await EquipamentoService.update(equipamento);
+            setShowSuccess(true);
+            setShowError(false);
+            fetchEquipamentos();
+            handleClose();
+        } catch (error) {
+            setAlert(error.response.data);
+            setShowSuccess(false);
+            setShowError(true);
         }
-
-        setShowSuccess(true);
-        fetchEquipamentos();
-        handleClose();
+        
     }
 
     const handleDelete = async (id) => {
@@ -139,6 +146,10 @@ function Equipamento() {
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>
                             Salvar
                         </Button>{''}
+
+                        <Alert variant='danger' show={showError} onClose={() => setShowError(false)} dismissible>
+                            {alert}
+                        </Alert>
                     </Form>
                 </Container>
             </Modal>

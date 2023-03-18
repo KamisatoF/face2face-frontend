@@ -14,6 +14,7 @@ function ContaBancaria() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
     const [alert, setAlert] = useState("");
     const { userData } = useContext(Context);
     const [contaBancaria, setContaBancaria] = useState({});
@@ -58,17 +59,24 @@ function ContaBancaria() {
         e.preventDefault();
         contaBancaria.userid = userData.id;
         contaBancaria.banco = bancoSelection.at(0).codigo;
-        if (contaBancaria.id === 0 || contaBancaria.id === undefined) {
-            setAlert("Dados inseridos com sucesso!");
-            await ContaBancariaService.insert(contaBancaria);
-        } else {
-            setAlert("Dados atualizados com sucesso!");
-            await ContaBancariaService.update(contaBancaria);
-        }
 
-        fetchContasBancarias();
-        handleClose();
-        setShowSuccess(true);
+        try {
+            if (contaBancaria.id === 0 || contaBancaria.id === undefined) {
+                await ContaBancariaService.insert(contaBancaria);
+            } else {
+                await ContaBancariaService.update(contaBancaria);
+            }
+            setAlert("Dados atualizados com sucesso!");
+            fetchContasBancarias();
+            handleClose();
+            setShowSuccess(true);
+            setShowError(false);
+
+        } catch (error) {
+            setAlert(error.response.data);
+            setShowSuccess(false);
+            setShowError(true);
+        }
     }
 
     const handleDelete = async (id) => {
@@ -173,6 +181,10 @@ function ContaBancaria() {
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>
                             Salvar
                         </Button>{''}
+
+                        <Alert variant='danger' show={showError} onClose={() => setShowSuccess(false)} dismissible>
+                            {alert}
+                        </Alert>
                     </Form>
                 </Container>
             </Modal>

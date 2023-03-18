@@ -12,6 +12,7 @@ function ServiceReformed() {
     const [services, setServices] = useState([]);
     const [show, setShow] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
     const [alert, setAlert] = useState("");
     const { userData } = useContext(Context);
     const [servico, setServico] = useState({});
@@ -42,19 +43,23 @@ function ServiceReformed() {
         e.preventDefault();
         servico.userid = userData.id;
         servico.preco = parseFloat(servico.preco);
-        if (servico.id === 0 || servico.id === undefined) {
-            setAlert("Dados inseridos com sucesso!");
-            await ServiceService.insert(servico);
-
-        } else {
+        try {
+            if (servico.id === 0 || servico.id === undefined) {
+                await ServiceService.insert(servico);
+            } else {
+                await ServiceService.update(servico);
+            }
             setAlert("Dados atualizados com sucesso!");
-            await ServiceService.update(servico);
-
+            setShowSuccess(true);
+            setShowError(false);
+            fetchServices();
+            handleClose();
+        } catch (error) {
+            setAlert(error.response.data);
+            setShowSuccess(false);
+            setShowError(true);
         }
-
-        setShowSuccess(true);
-        fetchServices();
-        handleClose();
+        
     }
 
     const handleDelete = async (id) => {
@@ -152,6 +157,10 @@ function ServiceReformed() {
                         <Button variant="dark" type="submit" onClick={(e) => { mergeService(e) }}>
                             Salvar
                         </Button>{''}
+                        
+                        <Alert variant='danger' show={showError} onClose={() => setShowError(false)} dismissible>
+                            {alert}
+                        </Alert>
                     </Form>
                 </Container>
             </Modal>
