@@ -136,6 +136,7 @@ function ContaBancaria() {
                                 <th>Agência</th>
                                 <th>Número da Conta</th>
                                 <th>Dígito</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>

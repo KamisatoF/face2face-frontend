@@ -109,6 +109,7 @@ function Equipamento() {
                             <tr>
                                 <th>Descrição</th>
                                 <th>Detalhes</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -16,7 +16,6 @@ function Header() {
                     <NavDropdown.Item onClick={() => navigate("/cadastro")}>Alterar Cadastro</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => navigate("/contabancaria")}>Gerenciar Contas</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => navigate("/")}>Cartões de Crédito</NavDropdown.Item>
-                    <NavDropdown.Item onClick={() => navigate("/relatoriolocacao")}>Relatório de Locações</NavDropdown.Item>
                     <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                     <NavDropdown.Item></NavDropdown.Item>
                 </NavDropdown>
@@ -49,15 +48,17 @@ function Header() {
                 </Navbar.Brand>
                 <Navbar.Collapse id="navbarscroll" >
                     <Nav >
-                        <NavDropdown title={"Guest"} >
+                        <NavDropdown title={"Host"} >
                             <NavDropdown.Item onClick={() => navigate("/")}>Espaços</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate("/serviceRef")}>Serviços</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate("/equipamento")}>Equipamentos</NavDropdown.Item>
                             <NavDropdown.Item onClick={() => navigate("/")}>Comodidades</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/")}>Verificar Agenda</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/")}>Solicitações Pendentes</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/relatoriolocacao")}>Relatório de Locações</NavDropdown.Item>
                             <NavDropdown.Item></NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link onClick={() => navigate("/")}>Minhas Reservas</Nav.Link>
-                        <Nav.Link onClick={() => navigate("/")}>Verificar Agenda</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
