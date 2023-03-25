@@ -144,7 +144,7 @@ function ContaBancaria() {
                         </tbody>
                     </Table>{' '}
 
-                    <Button variant="dark" onClick={() => handleNew()}>Cadastrar Novo Serviço</Button>{''}
+                    <Button variant="dark" onClick={() => handleNew()}>Cadastrar Nova Conta</Button>{''}
 
                     <Alert variant='success' show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
                         {alert}
