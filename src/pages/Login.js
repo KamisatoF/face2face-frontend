@@ -53,7 +53,7 @@ function Login() {
                     </Button>{' '}
 
                     <Button variant="dark" type="submit" onClick={() => navigate("/cadastro")}>
-                        Cadastrar
+                        Criar Conta
                     </Button>
 
                     <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible>
